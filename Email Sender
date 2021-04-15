@@ -1,1 +1,61 @@
+import os, smitplib, ssl, 
+from email import encoders
+from email.mime.base import MIMEbase
+from emai.mine.text import MIMEtext
+from emai.mime.multipart import MIMEmultipart
 
+senders_email = "reports@pcnetinc.com"
+receiver_email = "you@email.here"   #<-- Need to find a way to automate the email for the customers receiving this info
+BCC = "jworley@pcnetinc.com"
+message = MIMEmultipart("Alternate")
+message["Subject"] = "PCNet Audit reports"
+message["From] = senders_email
+message["TO"] = receivers_email 
+message["Bcc"] = BCC
+
+#file attachment for Users reports
+message.attach(MIMEtext(body, 'plain'))
+filename = #File location and neeed to solve input for customer issue
+
+#HTML message for the report being sent to clients.
+email = """\
+Hello, 
+Here is your PCNet automated report.
+Please contact us at 417-831-1700 for any questions or concerns.
+
+Thank you,
+PCNet Automated Report Team
+PCNet.com
+417-831-1700
+#PCNET logo here
+"""
+html = """\
+<html>
+  <body>
+    <p>Hello,<br>
+       Here is your PCNet automated report.
+       Please contact us at 417-831-1700 for any questions or concerns<br>
+       
+       Thank you,
+       PCNet Automated Report Team
+       <a href="http://www.PCNet.com"></a> 
+       417-831-1700
+       # PCNET Logo here
+    </p>
+  </body>
+</html>
+"""
+
+# Turn these into plain/html MIMEText objects
+first_part = MIMEText(text, "plain")
+second_part = MIMEText(html, "html")
+message.attach(part1)
+message.attach(part2)
+
+#This function creates a reliable and secure connection to our mail server
+context = ss.create_default_context()
+with smtplib.SMTP_SSL(#Our SMTP info here) as Server;
+  server.login(senders_email, password)
+  server.sendmail(
+     senders_mail, receivers_mail, message.as_string ()
+     )
