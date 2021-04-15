@@ -1,1 +1,17 @@
+import pyodbc 
+import pandas as pd
 
+
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server=servernameename;'
+                      'Database=databsename;'
+                      'Trusted_Connection=yes;')
+                      
+
+sql_query = pd.read_sql_query('''
+                              Enter in your query here!
+                              '''
+                              ,conn) 
+
+df = pd.DataFrame(sql_query)
+df.to_csv (r'C:\Users\jworley\Desktop\export_data.csv', index = False)
