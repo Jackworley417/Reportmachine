@@ -1,4 +1,3 @@
-# Reportmachine
-#Written by Jack Worley for personal use only, and business applications are configured after the fact. Email configuration is just for testing and not actual use until approved
+#Written by Jack Worley of Atlas Software Development.
 
-#Currently the CSV's in the build are test only
+By reading this the User is agreeing to take on liablity and ensures they have the premissions and rights to access and respond to the customer contacted with current software
