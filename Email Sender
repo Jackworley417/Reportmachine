@@ -10,7 +10,7 @@ BCC = "jworley@pcnetinc.com"
 message = MIMEmultipart("Alternate")
 message["Subject"] = "PCNet Audit reports"
 message["From] = senders_email
-message["TO"] = receivers_email 
+message["To"] = receivers_email 
 message["Bcc"] = BCC
 
 #file attachment for Users reports
@@ -38,9 +38,9 @@ html = """\
        
        Thank you,
        PCNet Automated Report Team
-       <a href="http://www.PCNet.com"></a> 
        417-831-1700
-       # PCNET Logo here
+       <a href="http://www.PCNet.com"></a> 
+       <img src="PCNETlogo.png" alt="PCNet Logo">
     </p>
   </body>
 </html>
