@@ -5,9 +5,7 @@ Created on Mon Apr 19 14:46:50 2021
 @author: jworley
 """
 
-import os, smtplib, ssl
-import pandas as pd
-import numpy as np 
+import smtplib
 from csv import DictReader
 from email import encoders
 from email.mime.base import MIMEBase
@@ -69,10 +67,10 @@ def make_a_email(self):
         message.attach(first_part)
         message.attach(second_part)
         
-#This function creates a reliable and secure connection to our mail server
-with smtplib.SMTP("smtp.mailtrap.io", 2525) as server:
-    server.login(login, password)
-    server.sendmail(
-        sender_email, receiver_email, email
-    )
-    print('Sent') 
+        #This function creates a reliable and secure connection to our mail server
+        with smtplib.SMTP("smtp.mailtrap.io", 2525) as server:
+            server.login(login, password)
+            server.sendmail(
+                senders_email, receiver_email, email
+            )
+            print('Sent') 
