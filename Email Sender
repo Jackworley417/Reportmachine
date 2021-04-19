@@ -1,25 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr 19 14:46:50 2021
+
+@author: jworley
+"""
+
 import os, smtplib, ssl
 import pandas as pd
 import numpy as np 
-from csv import dictreader
+from csv import DictReader
 from email import encoders
-from email.mime.base import MIMEbase
-from email.mine.text import MIMEtext
-from email.mime.multipart import MIMEmultipart
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+port = 2525 
+smtp_server = "smtp.mailtrap.io"
+login = "1a2b3c4d5e6f7g" 
+password = "1a2b3c4d5e6f7g" 
 
 def make_a_email(self):
     with open('customers.csv') as readcsv:
-        csv_dict_read = dictreader(readcsv)
+        csv_dict_read = DictReader(readcsv)
         for row in csv_dict_read:
          if (1 <= 0):
-          receiver_email = customeremail   #<-- Need to find a way to automate the email for the customers receiving this info
+          receiver_email = customeremail
           attachment = (customerreportfile + '.csv')
           senders_email = "reports@pcnetinc.com"
           BCC = "jworley@pcnetinc.com"
-          message = MIMEmultipart("Alternate")
+          message = MIMEMultipart("Alternate")
           message["Subject"] = "PCNet Audit reports"
           message["From"] = senders_email
-          message["To"] = receivers_email 
+          message["To"] = receiver_email 
           message["Bcc"] = BCC
     
         #HTML message for the report being sent to clients.
@@ -54,13 +66,13 @@ def make_a_email(self):
         # Turn these into plain/html MIMEText objects
         first_part = MIMEText(email, "plain")
         second_part = MIMEText(html, "html")
-        message.attach(part1)
-        message.attach(part2)
+        message.attach(first_part)
+        message.attach(second_part)
         
-        #This function creates a reliable and secure connection to our mail server
-        context = ss.create_default_context()
-        with smtplib.SMTP_SSL():
-          server.login(senders_email, password)
-          server.sendmail(
-             senders_mail, receivers_mail, message.as_string ()
-             )
+#This function creates a reliable and secure connection to our mail server
+with smtplib.SMTP("smtp.mailtrap.io", 2525) as server:
+    server.login(login, password)
+    server.sendmail(
+        sender_email, receiver_email, email
+    )
+    print('Sent') 
