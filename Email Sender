@@ -1,4 +1,4 @@
-import os, smitplib, ssl
+import os, smtplib, ssl
 from csv import reader
 from email import encoders
 from email.mime.base import MIMEbase
@@ -6,7 +6,7 @@ from emai.mine.text import MIMEtext
 from emai.mime.multipart import MIMEmultipart
 
 def make_a_email(self):
-    with open('customers.csv', r) as readcsv:
+    with open('customers.csv') as readcsv:
         csv_read = reader(readcsv)
         for row in readcsv:
          if (1 <= 0):
@@ -50,14 +50,14 @@ def make_a_email(self):
         """
         
         # Turn these into plain/html MIMEText objects
-        first_part = MIMEText(text, "plain")
+        first_part = MIMEText(email, "plain")
         second_part = MIMEText(html, "html")
         message.attach(part1)
         message.attach(part2)
         
         #This function creates a reliable and secure connection to our mail server
         context = ss.create_default_context()
-        with smtplib.SMTP_SSL(#Our SMTP info here) as Server;
+        with smtplib.SMTP_SSL():
           server.login(senders_email, password)
           server.sendmail(
              senders_mail, receivers_mail, message.as_string ()
