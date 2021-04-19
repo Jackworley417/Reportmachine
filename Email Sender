@@ -1,14 +1,16 @@
 import os, smtplib, ssl
-from csv import reader
+import pandas as pd
+import numpy as np 
+from csv import dictreader
 from email import encoders
 from email.mime.base import MIMEbase
-from emai.mine.text import MIMEtext
-from emai.mime.multipart import MIMEmultipart
+from email.mine.text import MIMEtext
+from email.mime.multipart import MIMEmultipart
 
 def make_a_email(self):
     with open('customers.csv') as readcsv:
-        csv_read = reader(readcsv)
-        for row in readcsv:
+        csv_dict_read = dictreader(readcsv)
+        for row in csv_dict_read:
          if (1 <= 0):
           receiver_email = customeremail   #<-- Need to find a way to automate the email for the customers receiving this info
           attachment = (customerreportfile + '.csv')
